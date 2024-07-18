@@ -1,0 +1,51 @@
+git init
+git status (opcional)
+git add . (nombre del doc si queremos algo en especifico, punto si todo )
+git commit -m "Primer commit"
+
+//en caso de no esta configurada la cuenta se realiza lo siguiente:
+
+git config --global user.email javier@gmail.com
+git config --global user.name javiergd
+//
+git commit -m "Primer commit"
+git branch -M main //rama main
+
+//colocamos el git remote add que nos entrega github
+
+git push -u origin main
+//sale el log
+
+
+//si deseamos hacer commit
+git add . 
+git commit -m "Segundo commit"
+git push -u origin main
+
+
+
+
+//clonamos el repo destino
+git clone https://github.com/JavierGD15/javascript-curso.git
+
+//Cuando usas  -b, crea una nueva rama con el nombre especificado y luego cambie a esa rama
+git checkout -b primera_rama
+
+//crear el documento
+echo "Hola, este es un saludo!" > saludo.txt
+
+//Agregar, commitear y subir los cambios a GitHub
+git add saludo.txt
+git commit -m "Agregar archivo de saludo en primera_rama"
+git push origin primera_rama
+
+//Crear y cambiar a la segunda rama
+git checkout -b segunda_rama
+
+//Crear el archivo txt con el nombre y número de carnet
+echo "Nombre: Javier Giron Carnet 202000510" > datos.txt
+
+//Agregar, commitear y subir los cambios a GitHub
+git add datos.txt
+git commit -m "Agregar archivo con nombre y número de carnet en segunda_rama"
+git push origin segunda_rama
