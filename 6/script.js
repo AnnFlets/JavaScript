@@ -99,26 +99,26 @@ function quintoEjercicio(){
 
 //EJERCICIO #6
 function sextoEjercicio(){
-    let opcion = parseInt(prompt("--- BIENVENIDO ---\n" +
-        "1. Sumar\n" +
-        "2. Restar\n" +
-        "3. Salir\n" +
-        "Ingrese el número correspondiente a la acción a realizar:"));
+    console.log("--- BIENVENIDO ---")
+    console.log("1. Sumar")
+    console.log("2. Restar")
+    console.log("3. Salir")
+    let opcion = parseInt(prompt("Ingrese el número correspondiente a la acción a realizar:"));
     switch(opcion){
         case 1:
             let numeroS1 = parseFloat(prompt("Ingrese el primer número de la suma:"));
             let numeroS2 = parseFloat(prompt("Ingrese el segundo número de la suma:"));
-            alert("El resultado de la suma es: " + (numeroS1 + numeroS2));
+            console.log("El resultado de la suma es: " + (numeroS1 + numeroS2));
             break;
         case 2:
             let numeroR1 = parseFloat(prompt("Ingrese el primer número de la resta:"));
             let numeroR2 = parseFloat(prompt("Ingrese el segundo número de la resta:"));
-            alert("El resultado de la resta es: " + (numeroR1 - numeroR2));
+            console.log("El resultado de la resta es: " + (numeroR1 - numeroR2));
             break;
         case 3:
-            alert("Saliendo...")
+            console.log("Saliendo...")
             break;
         default:
-            alert("La opción ingresada es inválida");
+            console.log("La opción ingresada es inválida");
     }
 }
