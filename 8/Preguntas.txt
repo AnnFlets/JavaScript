@@ -1,0 +1,32 @@
+#1
+
+locations = ["North", "South", "East", "West"]
+
+1. ["North", "South", "East", "West", "HQ"] -> push()
+2. ["North", "South", "East"] -> pop()
+3. ["South", "East", "West"] -> shift()
+4. ["HQ", "North", "South", "East", "West"] -> unshift()
+
+
+
+#2
+
+function listItems(){
+    var itemList = ["Widget A", "Widget C", "Widget E"]
+    for (i = 0; i < itemList.length; i++) {
+        document.getElementById("list").innerHTML += itemList[i] + "<br/>";
+    }
+}
+
+
+
+#3
+
+var array = [20, 40, 60, 80];
+
+array.shift();
+array.pop();
+array.push(10);
+array.unshift(100);
+
+array = [100, 40, 60, 10]
