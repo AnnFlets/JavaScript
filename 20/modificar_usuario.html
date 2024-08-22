@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hoteles GT</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/form.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-start">
+                <img src="./img/cheems.png" alt="Cheems" id="img_dashboard" />
+                <p id="username_dashboard"></p>
+            </div>
+            <div class="d-flex justify-content-end">
+                <a href="./menu.html" class="btn btn-success" id="boton-dashboard">Dashboard</a>
+                <button type="button" class="btn btn-danger" onclick=cerrarSesion()>Logout</button>
+            </div>
+        </div>
+    </nav>
+    <div class="fondo-form modificar">
+        <div class="contenedor-form">
+            <h2 class="titulo-form">Modificar usuario</h2>
+            <form>
+                <div class="grupo-form">
+                    <label htmlFor="rol-mod" class="label-form">Rol:</label>
+                    <select class="input-form" id="rol-mod">
+                        <option value="Administrador">Administrador</option>
+                        <option value="Gerente">Gerente</option>
+                        <option value="Recepcionista" selected>Recepcionista</option>
+                    </select>
+                </div>
+                <div class="grupo-form">
+                    <label htmlFor="first-name-mod" class="label-form">Nombre:</label>
+                    <input required type="text" id="first-name-mod" class="input-form"/>
+                </div>
+                <div class="grupo-form">
+                    <label htmlFor="last-name-mod" class="label-form">Apellido:</label>
+                    <input required type="text" id="last-name-mod" class="input-form"/>
+                </div>
+                <div class="grupo-form">
+                    <label htmlFor="email-mod" class="label-form">Correo electrónico:</label>
+                    <input required type="email" id="email-mod" class="input-form"/>
+                </div>
+                <div class="grupo-form">
+                    <label htmlFor="phone-number-mod" class="label-form">Teléfono:</label>
+                    <input required type="number" id="phone-number-mod" class="input-form"/>
+                </div>
+                <div class="grupo-form">
+                    <label htmlFor="address-mod" class="label-form">Dirección:</label>
+                    <input required type="text" id="address-mod" class="input-form"/>
+                </div>
+                <div class="grupo-form">
+                    <label htmlFor="birthdate-mod" class="label-form">Fecha de nacimiento:</label>
+                    <input required type="date" id="birthdate-mod" class="input-form"/>
+                </div>
+                <div class="grupo-form">
+                    <label htmlFor="user-password-mod" class="label-form">Contraseña:</label>
+                    <input required type="password" id="user-password-mod" class="input-form"/>
+                </div>
+                <br>
+                <button type="button" onclick=modificarUsuario() class="boton-form">Actualizar</button>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <script>
+        cargarNombreUsuario();
+        mostrarDatosUsuarioModificar();
+    </script>
+</body>
+</html>

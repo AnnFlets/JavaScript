@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hoteles GT</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/menu.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-start">
+                <img src="./img/cheems.png" alt="Cheems" id="img_dashboard" />
+                <p id="username_dashboard"></p>
+            </div>
+            <button type="button" class="btn btn-danger" onclick=cerrarSesion()>Logout</button>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 id="titulo_dashboard">GESTIÓN DE USUARIOS</h1>
+        <a href="./crear_usuario.html" class="btn btn-info">Crear usuario</a>
+        <br />
+        <br />
+        <br />
+        <p id="tabla_vacia"></p>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Rol</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="registros_dashboard"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <script>
+        cargarNombreUsuario();
+        cargarTablaUsuarios();
+    </script>
+</body>
+
+</html>

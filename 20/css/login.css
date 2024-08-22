@@ -1,0 +1,61 @@
+.fondo-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../img/fondo-login.jpg');
+}
+
+.contenedor-login{
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    padding: 35px;
+    max-width: 400px;
+}
+
+.titulo-login {
+    text-align: center;
+    color: rgb(97, 97, 97);
+    margin-bottom: 40px;
+}
+
+.grupo-login {
+    margin-bottom: 25px;
+}
+
+.label-login {
+    display: block;
+    margin-bottom: 10px;
+    color:rgb(100, 100, 100);
+}
+
+.input-login {
+    width: 100%;
+    padding: 8px;
+    border-radius: 15px;
+    border: 0.5px solid rgb(179, 179, 179);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.boton-login {
+    justify-self: center;
+    width: 90%;
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    color: #fff;
+    background-color: #cc6cbf;
+}
+
+.boton-login:hover {
+    background-color: #b13fa2;
+}
