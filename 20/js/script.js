@@ -281,7 +281,6 @@ function mostrarDatosUsuarioModificar() {
     document.getElementById("user-password-mod").value = usuario_modificar.contrasena;
 }
 
-
 function modificarUsuario(rol, nombre, apellido, correo, telefono, direccion, fecha_nacimiento, contrasena) {
     var lista_usuarios = JSON.parse(localStorage.getItem("users_list"));
     var id_usuario = JSON.parse(localStorage.getItem("user_mod")).id;
@@ -327,6 +326,9 @@ function modificarUsuario(rol, nombre, apellido, correo, telefono, direccion, fe
                     usuario.fecha_nacimiento = fecha_nacimiento;
                     usuario.contrasena = contrasena;
                     localStorage.setItem("users_list", JSON.stringify(lista_usuarios));
+                    if(usuario.id === JSON.parse(localStorage.getItem("user")).id){
+                        localStorage.setItem("user", JSON.stringify(usuario));
+                    }
                 }
             });
             location.href = "../menu.html";
@@ -344,6 +346,9 @@ function eliminarUsuario(id) {
             if (confirm("¿Desea eliminar al usuario " + usuario.id + " - [" + usuario.rol.toUpperCase() + "] - " + usuario.nombre + " " + usuario.apellido + "?")) {
                 lista_usuarios.splice(lista_usuarios.indexOf(usuario), 1);
                 localStorage.setItem("users_list", JSON.stringify(lista_usuarios));
+                if(usuario.id === JSON.parse(localStorage.getItem("user")).id){
+                    location.href = "../index.html";
+                }
             } else {
                 alert("Eliminación cancelada.");
             }
