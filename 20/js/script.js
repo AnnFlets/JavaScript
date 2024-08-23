@@ -105,19 +105,24 @@ function iniciarSesion() {
         alert("[ERROR]: Contraseña vacía. Debe rellenar el campo.");
         document.getElementById("password-login").focus();
     } else {
-        if (user === "a" && password === "a") {
-            localStorage.setItem("user", JSON.stringify("Administrador"));
+        if (user === "admin" && password === "admin123") {
+            localStorage.setItem("user", JSON.stringify(new Usuario(0, "Administrador", "Administrador", "", "admin@gmail.com", "", "", "admin123")));
             location.href = "../menu.html";
         } else if (JSON.parse(localStorage.getItem("users_list"))) {
-            var seEncontroUsuario = false;
+            var usuario_encontrado = "";
             JSON.parse(localStorage.getItem("users_list")).forEach(function (usuario) {
                 if (usuario.correo === user && usuario.contrasena === password) {
-                    seEncontroUsuario = true;
-                    localStorage.setItem("user", JSON.stringify(usuario));
-                    location.href = "../menu.html";
+                    usuario_encontrado = usuario;
                 }
             });
-            if (!seEncontroUsuario) {
+            if (usuario_encontrado) {
+                if(usuario_encontrado.rol === "Administrador" || usuario_encontrado.rol === "Gerente"){
+                    localStorage.setItem("user", JSON.stringify(usuario_encontrado));
+                    location.href = "../menu.html";
+                }else{
+                    alert("[ERROR]: El usuario no cuenta con los permisos necesarios.");
+                }
+            }else{
                 alert("[ERROR]: Usuario y/o contraseña incorrectos.");
             }
         }
@@ -129,18 +134,30 @@ function iniciarSesion() {
 
 function cargarNombreUsuario() {
     var usuario = JSON.parse(localStorage.getItem("user"));
-    if (usuario === "Administrador") {
-        document.getElementById("username_dashboard").innerHTML = usuario;
-    } else {
-        document.getElementById("username_dashboard").innerHTML = usuario.nombre + " " + usuario.apellido;
-    }
+    document.getElementById("username_dashboard").innerHTML = (usuario.nombre + " " + usuario.apellido).trim();
 }
 
 function cargarTablaUsuarios() {
+    var esAdmin = JSON.parse(localStorage.getItem("user")).rol === "Administrador";
+    if(esAdmin){
+        document.getElementById("boton-crear-usuario").innerHTML = '<a href="./crear_usuario.html" class="btn btn-primary" type="button">Crear usuario</a>';
+    }
     if (!JSON.parse(localStorage.getItem("users_list"))) {
         document.getElementById("tabla_vacia").innerText = "[INFO]: No hay usuarios guardados en el sistema.";
     } else {
         document.getElementById("tabla_vacia").innerText = "";
+        var encabezado_tabla = '<tr>' +
+            '<th>No.</th>' +
+            '<th>Rol</th>' +
+            '<th>Nombre</th>' +
+            '<th>Apellido</th>' +
+            '<th>Correo</th>' +
+            '<th>Teléfono</th>';
+        if (esAdmin) {
+            encabezado_tabla += '<th>Modificar</th>' +
+                '<th>Eliminar</th>';
+        }
+        encabezado_tabla += '</tr>';
         var filas_tabla = "";
         JSON.parse(localStorage.getItem("users_list")).forEach(function (usuario) {
             filas_tabla += '<tr>' +
@@ -149,11 +166,14 @@ function cargarTablaUsuarios() {
                 '<td>' + usuario.nombre + '</td>' +
                 '<td>' + usuario.apellido + '</td>' +
                 '<td>' + usuario.correo + '</td>' +
-                '<td>' + usuario.telefono + '</td>' +
-                '<td><button type="button" class="btn btn-warning" onclick=seleccionarUsuarioModificar(' + usuario.id + ')>Modificar</button></td>' +
-                '<td><button type="button" class="btn btn-danger" onclick=eliminarUsuario(' + usuario.id + ')>Eliminar</button></td>' +
-                '</tr>';
+                '<td>' + usuario.telefono + '</td>';
+            if (esAdmin) {
+                filas_tabla += '<td><button type="button" class="btn btn-warning" onclick=seleccionarUsuarioModificar(' + usuario.id + ')>Modificar</button></td>' +
+                    '<td><button type="button" class="btn btn-danger" onclick=eliminarUsuario(' + usuario.id + ')>Eliminar</button></td>';
+            }
+            filas_tabla += '</tr>';
         });
+        document.getElementById("encabezado_dashboard").innerHTML = encabezado_tabla;
         document.getElementById("registros_dashboard").innerHTML = filas_tabla;
     }
 }
@@ -202,7 +222,7 @@ function crearUsuario() {
                 localStorage.setItem("users_list", JSON.stringify(lista_usuarios));
             }
             location.href = "../menu.html";
-        }else{
+        } else {
             alert("[ERROR]: El correo electrónico ingresado ya existe en el sistema. Ingrese otra dirección de correo");
             document.getElementById("email-crear").focus();
         }
@@ -213,13 +233,13 @@ function verificarExisteCorreo(correo, accion) {
     var lista_usuarios = JSON.parse(localStorage.getItem("users_list"));
     var existe_usuario = false;
     if (lista_usuarios) {
-        if(accion === 2){
+        if (accion === 2) {
             lista_usuarios.forEach(function (usuario) {
                 if (usuario.correo === correo && usuario.correo !== JSON.parse(localStorage.getItem("user_mod")).correo) {
                     existe_usuario = true;
                 }
             });
-        }else{
+        } else {
             lista_usuarios.forEach(function (usuario) {
                 if (usuario.correo === correo) {
                     existe_usuario = true;
@@ -295,7 +315,7 @@ function modificarUsuario(rol, nombre, apellido, correo, telefono, direccion, fe
         alert("[ERROR]: Contraseña vacía. Debe rellenar el campo.");
         document.getElementById("user-password-mod").focus();
     } else {
-        if (!verificarExisteCorreo(correo, 2)){
+        if (!verificarExisteCorreo(correo, 2)) {
             lista_usuarios.forEach(usuario => {
                 if (usuario.id === id_usuario) {
                     usuario.rol = rol;
@@ -310,7 +330,7 @@ function modificarUsuario(rol, nombre, apellido, correo, telefono, direccion, fe
                 }
             });
             location.href = "../menu.html";
-        }else{
+        } else {
             alert("[ERROR]: El correo electrónico ingresado ya existe en el sistema. Ingrese otra dirección de correo");
             document.getElementById("email-mod").focus();
         }

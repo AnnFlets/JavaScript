@@ -20,7 +20,7 @@
     </nav>
     <div class="container">
         <h1 id="titulo_dashboard">GESTIÓN DE USUARIOS</h1>
-        <a href="./crear_usuario.html" class="btn btn-info">Crear usuario</a>
+        <div id="boton-crear-usuario"></div>
         <br />
         <br />
         <br />
@@ -28,18 +28,7 @@
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-bordered table-sm">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Rol</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Modificar</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </thead>
+                    <thead id="encabezado_dashboard"></thead>
                     <tbody id="registros_dashboard"></tbody>
                 </table>
             </div>
@@ -49,6 +38,7 @@
     <script>
         cargarNombreUsuario();
         cargarTablaUsuarios();
+        localStorage.setItem("user_mod", JSON.stringify(""));
     </script>
 </body>
 
